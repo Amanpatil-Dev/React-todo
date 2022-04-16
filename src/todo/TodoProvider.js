@@ -5,7 +5,8 @@ const defaltState = {
     allTodo: 0,
     activeTodo: 0,
     completedTodo: 0,
-    remainingTodo: 0
+    remainingTodo: 0,
+    info:''
 }
 const defaultTheme={
     dark:'darkTheme',
@@ -23,7 +24,8 @@ const todoReducer = (state, action) => {
             allTodo: remainingTodo.length,
             activeTodo: remainingTodo.length,
             completedTodo: completedTodo.length,
-            remainingTodo: remainingTodo.length
+            remainingTodo: remainingTodo.length,
+            info:'Successfully Added Todo'
 
         }
     }
@@ -42,13 +44,14 @@ const todoReducer = (state, action) => {
 
         const completedTodo = UpdatedItems.filter((todo) => todo.isCompleted)
         const remainingTodo = UpdatedItems.filter((todo) => !todo.isCompleted)
-
+debugger
         return {
             todoItem: UpdatedItems,
             allTodo: UpdatedItems.length,
             activeTodo: remainingTodo.length,
             completedTodo: completedTodo.length,
-            remainingTodo: remainingTodo.length
+            remainingTodo: remainingTodo.length,
+            info:!existingTodoItem.isCompleted ? 'Successfully Marked Completed':'Successfully Marked Un-Completed'
         }
 
     }
@@ -61,7 +64,8 @@ const todoReducer = (state, action) => {
             allTodo: uniqueResultArrayObjOne.length,
             activeTodo: uniqueResultArrayObjOne.length,
             completedTodo: 0,
-            remainingTodo: uniqueResultArrayObjOne.length
+            remainingTodo: uniqueResultArrayObjOne.length,
+            info:'Cleared All Completed Todo'
         }
 
     }
@@ -82,7 +86,8 @@ const todoReducer = (state, action) => {
             allTodo: deleteTodo.length,
             activeTodo: activeTodos.length,
             completedTodo: completedTodos.length,
-            remainingTodo: activeTodos.length
+            remainingTodo: activeTodos.length,
+            info:'Successfully Deleted Todo'
         }
     }
     if (action.type === 'EDIT') {
@@ -157,13 +162,14 @@ const TodoProvider = (props) => {
         clearCompletedTodo: clearCompletedTodoHandler,
         deleteById: deleteByIdHandler,
         editById: editByIdHandler,
+        toggleTheme:toggleThemeHandler,
         todoItem: todoInit.todoItem,
         allTodo: todoInit.allTodo,
         activeTodo: todoInit.activeTodo,
         completedTodo: todoInit.completedTodo,
         remainingTodo: todoInit.remainingTodo,
         theme:theme,
-        toggleTheme:toggleThemeHandler
+        info:todoInit.info
     }
 
     return (<TodoContext.Provider value={todoContext}>

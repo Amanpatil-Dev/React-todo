@@ -7,7 +7,14 @@ import TodoItem from "./Components/TodoItem/TodoItem";
 import TodoStatus from "./Components/TodoStatus/TodoStatus";
 import React, { useContext, useEffect, useState } from "react";
 import todoContext from "./todo/todo-context";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
+const options = {
+ 
+  autoClose: 2000,
+  
+};
 
 function App() {
   const tdContext = useContext(todoContext)
@@ -16,7 +23,10 @@ function App() {
     id:'',
     todo:''
   })
+ 
   const handleStatus = (status) => setState(status)
+
+   tdContext.info !=="" && toast.success(tdContext.info,options)
 
   useEffect(()=>{
     if(tdContext.theme){
@@ -39,6 +49,7 @@ function App() {
 
   return (
     <React.Fragment>
+      <ToastContainer/>
       <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog">
           <div class="modal-content">

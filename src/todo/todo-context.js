@@ -14,6 +14,7 @@ const todoContext=React.createContext({
     activeTodo:0,
     completedTodo:0,
     remainingTodo:0,
+    info:''
 })
 
 export default todoContext

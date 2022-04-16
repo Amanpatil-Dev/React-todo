@@ -14,8 +14,9 @@ function TodoInput(props) {
             todo: todoInput.current.value,
             isCompleted:false,
             
-         })
-         todoInput.current.value=''
+        })
+
+        todoInput.current.value=''
 
     }
 
