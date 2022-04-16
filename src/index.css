@@ -204,8 +204,9 @@ p{
 }
 .stats-light{
 background-color: #ffffff;
-transition: all .35s ease-in-out;
+
 box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+transition: all .35s ease-in-out;
 
 
 }
@@ -252,9 +253,15 @@ box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
     padding: 0;
  
     width: unset;
+    transition: all .35s ease-in-out;
+
   }
   .row>*{
     padding: 0%;
+  }
+  .stats-light{
+    box-shadow:none;
+    transition: all .35s ease-in-out;
   }
   .todo-grid{
   padding: 0;
