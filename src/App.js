@@ -25,8 +25,9 @@ function App() {
   })
  
   const handleStatus = (status) => setState(status)
+  debugger
 
-   tdContext.info !=="" && toast.success(tdContext.info,options)
+   //tdContext.info !== ""  && toast.success(tdContext.info,options)
 
   useEffect(()=>{
     if(tdContext.theme){
