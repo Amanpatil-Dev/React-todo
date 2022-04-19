@@ -13,6 +13,7 @@ function TodoItem(props) {
     }
     const editTodo = (id) => {
         props.getEditTodoId(id)
+        tdContext.sideEffectToast()
     }
 
     return (

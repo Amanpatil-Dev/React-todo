@@ -25,9 +25,9 @@ function App() {
   })
  
   const handleStatus = (status) => setState(status)
-  debugger
+  
 
-   //tdContext.info !== ""  && toast.success(tdContext.info,options)
+   tdContext.showinfo &&  toast.success(tdContext.info,options)
 
   useEffect(()=>{
     if(tdContext.theme){
@@ -41,8 +41,9 @@ function App() {
   },[tdContext.theme])
 
   const handleEdit = (id) => {
+    debugger
     const todoToEdit = tdContext.todoItem.filter((todo) =>  todo.id === id)
-    setEditState({id:id,todo:todoToEdit[0].todo})
+    setEditState({id:id,todo:todoToEdit[todoToEdit.length-1].todo})
   }
   const handleOnChange=(e)=>setEditState({id:editState.id,todo:e.target.value})
 

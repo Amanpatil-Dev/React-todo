@@ -1,8 +1,13 @@
+import { useContext } from "react"
+import todoContext from "../../todo/todo-context"
 
 function DisplayStatus(props){
+   const tdContext= useContext(todoContext)
     const showTodoBasedOnFilter=(status)=>{
         
         props.sendStatus(status)
+        tdContext.sideEffectToast()
+        
         
 
     }

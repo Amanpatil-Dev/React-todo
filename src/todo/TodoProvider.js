@@ -6,7 +6,8 @@ const defaltState = {
     activeTodo: 0,
     completedTodo: 0,
     remainingTodo: 0,
-    info:''
+    info:'',
+    showinfo:''
 }
 const defaultTheme={
     dark:'darkTheme',
@@ -25,7 +26,8 @@ const todoReducer = (state, action) => {
             activeTodo: remainingTodo.length,
             completedTodo: completedTodo.length,
             remainingTodo: remainingTodo.length,
-            info:'Successfully Added Todo'
+            info:'Successfully Added Todo',
+            showinfo:true
 
         }
     }
@@ -51,7 +53,8 @@ debugger
             activeTodo: remainingTodo.length,
             completedTodo: completedTodo.length,
             remainingTodo: remainingTodo.length,
-            info:!existingTodoItem.isCompleted ? 'Successfully Marked Completed':'Successfully Marked Un-Completed'
+            info:!existingTodoItem.isCompleted ? 'Successfully Marked Completed':'Successfully Marked Un-Completed',
+            showinfo:true
         }
 
     }
@@ -65,7 +68,8 @@ debugger
             activeTodo: uniqueResultArrayObjOne.length,
             completedTodo: 0,
             remainingTodo: uniqueResultArrayObjOne.length,
-            info:'Cleared All Completed Todo'
+            info:'Cleared All Completed Todo',
+            showinfo:true
         }
 
     }
@@ -87,7 +91,8 @@ debugger
             activeTodo: activeTodos.length,
             completedTodo: completedTodos.length,
             remainingTodo: activeTodos.length,
-            info:'Successfully Deleted Todo'
+            info:'Successfully Deleted Todo',
+            showinfo:true
         }
     }
     if (action.type === 'EDIT') {
@@ -109,10 +114,22 @@ debugger
             allTodo: state.allTodo,
             activeTodo: state.activeTodo,
             completedTodo: state.completedTodo,
-            remainingTodo: state.remainingTodo
+            remainingTodo: state.remainingTodo,
+            info:'Successfully Edited Todo',
+            showinfo:true
+
         }
 
 
+    }
+    if(action.type==='SHOW_TOAST_FALSE'){
+        console.log(state,action)
+        debugger
+
+        return {
+            ...state,
+            showinfo:false
+        }
     }
 
 
@@ -143,6 +160,9 @@ const TodoProvider = (props) => {
         setTheme(theme)
 
     }
+    const sideEffectToastHandler=()=>{
+        dispatchTodo({type:'SHOW_TOAST_FALSE'})
+    }
     useEffect(() => {
         switch (theme) {
           case defaultTheme.light:
@@ -163,13 +183,15 @@ const TodoProvider = (props) => {
         deleteById: deleteByIdHandler,
         editById: editByIdHandler,
         toggleTheme:toggleThemeHandler,
+        sideEffectToast:sideEffectToastHandler,
         todoItem: todoInit.todoItem,
         allTodo: todoInit.allTodo,
         activeTodo: todoInit.activeTodo,
         completedTodo: todoInit.completedTodo,
         remainingTodo: todoInit.remainingTodo,
         theme:theme,
-        info:todoInit.info
+        info:todoInit.info,
+        showinfo:todoInit.showinfo
     }
 
     return (<TodoContext.Provider value={todoContext}>
