@@ -46,7 +46,7 @@ const todoReducer = (state, action) => {
 
         const completedTodo = UpdatedItems.filter((todo) => todo.isCompleted)
         const remainingTodo = UpdatedItems.filter((todo) => !todo.isCompleted)
-debugger
+
         return {
             todoItem: UpdatedItems,
             allTodo: UpdatedItems.length,
@@ -123,8 +123,7 @@ debugger
 
     }
     if(action.type==='SHOW_TOAST_FALSE'){
-        console.log(state,action)
-        debugger
+      
 
         return {
             ...state,

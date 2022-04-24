@@ -9,6 +9,7 @@ function TodoHeader() {
         setDarkMode(!darkMode)
         tdCTX.toggleTheme(darkMode?'whiteTheme':'darkTheme')
 
+        tdCTX.sideEffectToast();
 
     }
     return (<React.Fragment>

@@ -11,47 +11,47 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 const options = {
- 
+
   autoClose: 2000,
-  
+
 };
 
 function App() {
   const tdContext = useContext(todoContext)
   const [initState, setState] = useState('All')
   const [editState, setEditState] = useState({
-    id:'',
-    todo:''
+    id: '',
+    todo: ''
   })
- 
+
   const handleStatus = (status) => setState(status)
-  
 
-   tdContext.showinfo &&  toast.success(tdContext.info,options)
 
-  useEffect(()=>{
-    if(tdContext.theme){
+  tdContext.showinfo && toast.success(tdContext.info, options)
+
+  useEffect(() => {
+    if (tdContext.theme) {
       document.body.classList.add('whiteTheme')
 
-    }else{
+    } else {
       document.body.classList.add('darkTheme')
 
     }
 
-  },[tdContext.theme])
+  }, [tdContext.theme])
 
   const handleEdit = (id) => {
-    debugger
-    const todoToEdit = tdContext.todoItem.filter((todo) =>  todo.id === id)
-    setEditState({id:id,todo:todoToEdit[todoToEdit.length-1].todo})
-  }
-  const handleOnChange=(e)=>setEditState({id:editState.id,todo:e.target.value})
 
-  const onhandleEdit = ()=>tdContext.editById(editState)
+    const todoToEdit = tdContext.todoItem.filter((todo) => todo.id === id)
+    setEditState({ id: id, todo: todoToEdit[todoToEdit.length - 1].todo })
+  }
+  const handleOnChange = (e) => setEditState({ id: editState.id, todo: e.target.value })
+
+  const onhandleEdit = () => tdContext.editById(editState)
 
   return (
     <React.Fragment>
-      <ToastContainer/>
+      <ToastContainer />
       <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog">
           <div class="modal-content">
@@ -62,16 +62,16 @@ function App() {
             <div class="modal-body">
               <div class="input-group mb-3">
                 <input type="text" class="form-control" onChange={handleOnChange} value={editState.todo} aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" />
-            </div>
+              </div>
             </div>
             <div class="modal-footer">
               <button type="button" class="btn btn-primary" onClick={onhandleEdit} data-bs-dismiss="modal">Save Changes</button>
-             
+
             </div>
           </div>
         </div>
       </div>
-      <section class={`${tdContext.theme==='whiteTheme'?'bg-gradient-custom-light':'bg-gradient-custom-dark'}`}>
+      <section class={`${tdContext.theme === 'whiteTheme' ? 'bg-gradient-custom-light' : 'bg-gradient-custom-dark'}`}>
         <Container>
           <Row className="row justify-content-center">
             <Column className="todo col-lg-6 col-md-10 col-sm-12">
@@ -94,7 +94,6 @@ function App() {
 
               {tdContext.todoItem.map((todo) => (
                 <TodoItem getEditTodoId={handleEdit} key={todo.id} status={initState} isComplete={todo.isCompleted} todo={todo.todo} id={todo.id} />
-
               ))}
 
               {tdContext.todoItem.length > 0 && <TodoStatus setStatus={handleStatus} />}
