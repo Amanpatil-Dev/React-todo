@@ -8,7 +8,6 @@ function DisplayStatus(props){
         props.sendStatus(status)
         tdContext.sideEffectToast()
         
-        
 
     }
     return (

@@ -9,6 +9,7 @@ const todoContext=React.createContext({
     editById:(todo)=>{},
     toggleTheme:(theme)=>{},
     sideEffectToast:()=>{},
+    setFromLocal:()=>{},
     theme:'',
     todoItem:[],
     allTodo:0,

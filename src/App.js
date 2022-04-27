@@ -23,11 +23,11 @@ function App() {
     id: '',
     todo: ''
   })
+  
 
   const handleStatus = (status) => setState(status)
 
-
-  tdContext.showinfo && toast.success(tdContext.info, options)
+ 
 
   useEffect(() => {
     if (tdContext.theme) {
